@@ -1,12 +1,32 @@
 // ! ! !
 // Three Bugs
 
-var arrayAtticus = ["Atticus", "2405", "47000", 3];  // 0
-var arrayJem = ["Jem", "62347", "63500", 4];  // 1
-var arrayBoo = ["Boo", "11435", "54000", 3]; // 2
-var arrayScout = ["Scout", "6243", "74750", 5]; // 3
+var objAtticus = {
+	name: "Atticus",
+	employeeNum: "2405",
+	annualSalary: "47000",
+	reviewRating: 3
+}
+var objJem = {
+	name: "Jem",
+	employeeNum :  "62347",
+	annualSalary : "63500",
+	reviewRating: 4
+}
+var objBoo = {
+	name: "Boo",
+	employeeNum: "11435",
+	annualSalary: "54000",
+	reviewRating: 3
+}
+var objScout = {
+	name: "Scout",
+	employeeNum : "6243",
+	annualSalary: "74750",
+	reviewRating: 5
+}
 
-var array = [arrayAtticus, arrayJem, arrayBoo, arrayScout];
+var object = [objAtticus, objJem, objBoo, objScout];
 //Create variables used to write to the DOM
 var newEl, newText, position;
 //Capture the position of insertion into the DOM
@@ -14,22 +34,22 @@ position = document.getElementById('content');
 
 //Loop the array, extracting each array and writing information to the DOM
 //Note that the information is not 'clean'
-for(var i = 0; i < array.length; i++){
-	array[i] = calculateSTI(array[i]); //Changed calculateSTI(array) to calculateSTI(array[i])
+for(var prop in object){
+	object[prop] = calculateSTI(object[prop]); //Changed calculateSTI(array) to calculateSTI(array[i])
  	newEl = document.createElement('li');
-	newText = document.createTextNode(array[i].join(", "));
+	newText = document.createTextNode(object[prop].join(", "));
 	newEl.appendChild(newText);
 	position.appendChild(newEl);
 }
 
-function calculateSTI(array){
+function calculateSTI(object){
   var newArray = [];
 
-  newArray[0] = array[0];
+  newArray[0] = object.name;
 
-  var employeeNumber = array[1];
-  var baseSalary = array[2];
-  var reviewScore = array[3];
+  var employeeNumber = object.employeeNum;
+  var baseSalary = object.annualSalary;
+  var reviewScore = object.reviewRating;
 
   var bonus = getBaseSTI(reviewScore) + getYearAdjustment(employeeNumber) - getIncomeAdjustment(baseSalary);
   if(bonus > 0.13){
