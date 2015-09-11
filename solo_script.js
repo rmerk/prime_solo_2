@@ -17,7 +17,7 @@ position = document.getElementById('content');
 for(var i = 0; i < array.length; i++){
 	array[i] = calculateSTI(array[i]); //Changed calculateSTI(array) to calculateSTI(array[i])
  	newEl = document.createElement('li');
-	newText = document.createTextNode(array[i]);
+	newText = document.createTextNode(array[i].join(", "));
 	newEl.appendChild(newText);
 	position.appendChild(newEl);
 }
@@ -38,7 +38,7 @@ function calculateSTI(array){
 
   newArray[1] = bonus;
   newArray[2] = Math.round(baseSalary * (1.0 + bonus));
-  newArray[3] = baseSalary * bonus;
+  newArray[3] = Math.round(baseSalary * bonus);
   console.log(newArray[0] + " " + newArray[1] + " " + newArray[2] + " " + newArray[3]);
   return newArray;
 }
